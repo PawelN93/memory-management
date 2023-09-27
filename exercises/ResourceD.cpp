@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <memory>
 
 using namespace std;
 
@@ -24,15 +25,20 @@ int main(int argc, char* argv[])
         exit(-1);
     }
     const char* N = argv[1];
-    Resource* rsc = nullptr;
+    //std::cout<< N << std::endl;
+    //std::cout<< *N << std::endl;
+    //Resource*  = nullptr;
+    //std::unique_ptr<Resource> rsc = nullptr;
     try
     {
-        rsc = new Resource();
+        //rsc.reset(new Resource{});
+        std::unique_ptr<Resource> rsc = make_unique<Resource>();
         rsc->use(N);
-        delete rsc;
+        //delete rsc;
     }
     catch (logic_error & e)
     {
+        //delete rsc;
         cout << e.what() << endl;
     }
     return 0;
