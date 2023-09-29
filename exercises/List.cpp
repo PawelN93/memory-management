@@ -3,6 +3,11 @@
 
 using namespace std;
 
+class EmptyListError : public std::runtime_error{
+    public:
+    EmptyListError(const std::string &msg) : std::runtime_error(msg) {}
+};
+
 class Node
 {
 public:
@@ -69,8 +74,7 @@ std::shared_ptr<Node> List::get(const int value)
 {
     if(!first)
     {
-        cout << "List is empty!" << endl;
-        return nullptr;
+        throw EmptyListError{"Pusta lista!"};
     }
     else
     {
@@ -110,19 +114,25 @@ int main()
     std::shared_ptr<Node> node4 = std::make_shared<Node>(Node(4));
     std::shared_ptr<Node> node7 = std::make_shared<Node>(Node(7));
 
-    lista.add(node4);
-    lista.add(std::make_shared<Node>(Node(2)));
-    lista.add(node7);
-    lista.add(node7);
-    lista.add(node4);
-    lista.add(node7);
-    lista.add(node4);
-    lista.add(std::make_shared<Node>(Node(9)));
+    // lista.add(node4);
+    // lista.add(std::make_shared<Node>(Node(2)));
+    // lista.add(node7);
+    // lista.add(node7);
+    // lista.add(node4);
+    // lista.add(node7);
+    // lista.add(node4);
+    // lista.add(std::make_shared<Node>(Node(9)));
 
-    auto node = lista.get(1);
+    try{
+        auto node = lista.get(1);
 
-    if (node)
+        if(node){
         cout << node->value << '\n';
+        }
+    }
+    catch(EmptyListError const &e){
+        std::cout << e.what() << std::endl;
+    }
 
     // lista.delete_list();
     return 0;
