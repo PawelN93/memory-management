@@ -20,6 +20,7 @@ public:
     List();
     void add(Node* node);
     Node* get(const int value);
+    void delete_list();
 
 private:
     Node* first;
@@ -74,6 +75,17 @@ Node* List::get(const int value)
     }
 }
 
+void List::delete_list(){
+    
+    Node *current = first;
+
+    while (current){
+        Node *temp = current->next;
+        delete current;
+        current = temp;
+    }
+}
+
 int main()
 {
     List lista;
@@ -89,6 +101,7 @@ int main()
     if (node)
         cout << node->value << '\n';
 
+    lista.delete_list();
     return 0;
 }
 
