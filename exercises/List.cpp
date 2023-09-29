@@ -9,6 +9,9 @@ public:
         next(nullptr),
         value(v)
     {}
+    ~Node(){
+        delete next;
+    }
 
     Node* next;
     int value;
@@ -18,9 +21,10 @@ class List
 {
 public:
     List();
+    ~List();
     void add(Node* node);
     Node* get(const int value);
-    void delete_list();
+    // void delete_list();
 
 private:
     Node* first;
@@ -29,6 +33,10 @@ private:
 List::List() :
     first(nullptr)
 {}
+
+List::~List(){
+    delete first;
+}
 
 void List::add(Node* node)
 {
@@ -75,16 +83,16 @@ Node* List::get(const int value)
     }
 }
 
-void List::delete_list(){
+// void List::delete_list(){
     
-    Node *current = first;
+//     Node *current = first;
 
-    while (current){
-        Node *temp = current->next;
-        delete current;
-        current = temp;
-    }
-}
+//     while (current){
+//         Node *temp = current->next;
+//         delete current;
+//         current = temp;
+//     }
+// }
 
 int main()
 {
@@ -101,7 +109,7 @@ int main()
     if (node)
         cout << node->value << '\n';
 
-    lista.delete_list();
+    // lista.delete_list();
     return 0;
 }
 
