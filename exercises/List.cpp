@@ -52,7 +52,16 @@ void List::add(std::shared_ptr<Node> node)
         {
             current = current->next;
         }
-        current->next = node;
+
+        if (node->next != nullptr || current == node)
+        {
+            current->next = std::make_shared<Node>(node->value);
+        }
+        else
+        {
+            current->next = node;
+        }
+        
     }
 }
 
@@ -104,7 +113,12 @@ int main()
     lista.add(node4);
     lista.add(std::make_shared<Node>(Node(2)));
     lista.add(node7);
+    lista.add(node7);
+    lista.add(node4);
+    lista.add(node7);
+    lista.add(node4);
     lista.add(std::make_shared<Node>(Node(9)));
+
     auto node = lista.get(1);
 
     if (node)
