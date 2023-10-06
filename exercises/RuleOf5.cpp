@@ -1,3 +1,12 @@
+// Napisz klasę szablonową, która trzyma wskaźnik.
+
+// użyj zwykłego wskaźnika, aby zarządzać pamięcią do typu szablonowego
+// zaimplementuj konstruktor, w którym pozyskasz zasób
+// zaimplementuj Rule of 3
+// zaimplementuj Rule of 5
+// zaimplementuj Rule of 0
+// użyj odpowiedniego smart pointera zamiast zwykłego wskaźnika
+
 #include <iostream>
 #include <utility>
 
